@@ -1,10 +1,15 @@
 import './App.css';
-import Form from './components/Form';
+import UrlForm from './components/UrlForm';
+import MessageForm from './components/MessageForm';
 
 function App() {
-  return (
-    <Form />
-  );
+	return (
+		<div>
+			<UrlForm />
+			<p />
+			<MessageForm />
+		</div>
+	);
 }
 
 export default App;

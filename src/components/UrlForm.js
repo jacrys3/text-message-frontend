@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TextBox from './TextBox';
 
-function Form() {
+function UrlForm() {
     const [url, setUrl] = useState('/api/data');
     const [currentUrl, setCurrentUrl] = useState('');
 
@@ -16,6 +16,7 @@ function Form() {
 
     return (
         <div>
+            <h2>Url Form</h2>
             <form onSubmit={handleUrlSubmit}>
                 <input 
                     name='urlInput' 
@@ -30,4 +31,4 @@ function Form() {
     );
 }
 
-export default Form;
+export default UrlForm;
