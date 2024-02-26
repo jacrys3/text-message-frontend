@@ -8,7 +8,6 @@ function MessageForm() {
 
     useEffect(() => {
         socket.on('receive_message', (msg) => {
-            console.log(msg);
             setReceivedMessage(msg);
         });
 
