@@ -8,7 +8,7 @@ function TextBox({ url }) {
     if (error) {
         return <p>Error: {error.message}</p>
     };
-    return <div>{JSON.stringify(data)}</div>
+    return <div>Response: {JSON.stringify(data)}</div>
 }
 
 export default TextBox;
