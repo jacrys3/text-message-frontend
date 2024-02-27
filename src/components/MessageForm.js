@@ -1,55 +1,55 @@
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
+import React, { useState, useEffect } from 'react'
+import io from 'socket.io-client'
 
-const socket = io(process.env.REACT_APP_WEBSOCKET_URL);
+const socket = io(process.env.REACT_APP_WEBSOCKET_URL)
 
-function MessageForm() {
-    const [receivedMessage, setReceivedMessage] = useState('');
-    const [roomId, setRoomId] = useState("0001");
+function MessageForm () {
+  const [receivedMessage, setReceivedMessage] = useState('')
+  const [roomId, setRoomId] = useState('0001')
 
-    useEffect(() => {
-        socket.on('receive_message', (msg) => {
-            setReceivedMessage(msg);
-        });
+  useEffect(() => {
+    socket.on('receive_message', (msg) => {
+      setReceivedMessage(msg)
+    })
 
-        socket.emit('join_room', roomId);
+    socket.emit('join_room', roomId)
 
-        return () => {
-            socket.off('receive_message');
-            socket.emit('leave_room', roomId);
-        };
-    }, [roomId]);
-
-    function sendMessage(msg) {
-        socket.emit('send_message', { room: roomId, message: msg });
+    return () => {
+      socket.off('receive_message')
+      socket.emit('leave_room', roomId)
     }
+  }, [roomId])
 
-    const [message, setMessage] = useState('');
-    const [currentMessage, setCurrentMessage] = useState('');
+  function sendMessage (msg) {
+    socket.emit('send_message', { room: roomId, message: msg })
+  }
 
-    function handleCurrentMessageChange(e) {
-        setCurrentMessage(e.target.value);
-    }
+  const [message, setMessage] = useState('')
+  const [currentMessage, setCurrentMessage] = useState('')
 
-    function handleMessageSubmit(e) {
-        e.preventDefault();
-        setMessage(currentMessage);
-        sendMessage(currentMessage);
-        setCurrentMessage('');
-    }
+  function handleCurrentMessageChange (e) {
+    setCurrentMessage(e.target.value)
+  }
 
-    return (
+  function handleMessageSubmit (e) {
+    e.preventDefault()
+    setMessage(currentMessage)
+    sendMessage(currentMessage)
+    setCurrentMessage('')
+  }
+
+  return (
         <div>
             <h1>Message Form</h1>
-            <select value={roomId} onChange={(e) => {setRoomId(e.target.value)}}>
+            <select value={roomId} onChange={(e) => { setRoomId(e.target.value) }}>
                 <option value="0001">0001</option>
                 <option value="0002">0002</option>
             </select>
             <form onSubmit={handleMessageSubmit}>
-                <input 
-                    name='messageInput' 
-                    placeholder='Enter message..' 
-                    type='text' 
+                <input
+                    name='messageInput'
+                    placeholder='Enter message..'
+                    type='text'
                     value={currentMessage}
                     onChange={handleCurrentMessageChange}
                 />
@@ -58,7 +58,7 @@ function MessageForm() {
             <p>Message: {message}</p>
             <p>Received message: {receivedMessage}</p>
         </div>
-    );
+  )
 }
 
-export default MessageForm;
+export default MessageForm
