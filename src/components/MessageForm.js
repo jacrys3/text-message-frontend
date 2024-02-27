@@ -16,6 +16,7 @@ function MessageForm() {
 
         return () => {
             socket.off('receive_message');
+            socket.emit('leave_room', roomId);
         };
     }, [roomId]);
 
