@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
+import React, { useState, useEffect } from 'react'
+import io from 'socket.io-client'
 
-const socket = io(process.env.REACT_APP_WEBSOCKET_URL);
+const socket = io(process.env.REACT_APP_WEBSOCKET_URL)
 
 function MessageForm() {
     const [messageHistory, setMessageHistory] = useState({});
@@ -19,7 +19,8 @@ function MessageForm() {
             setMessageHistory(msg_history);
         });
 
-        socket.emit('join_room', roomId);
+    socket.emit('join_room', roomId)
+
 
         return () => {
             socket.off('receive_message_history');
@@ -31,25 +32,29 @@ function MessageForm() {
         setCurrentMessage(e.target.value);
     }
 
-    function handleMessageSubmit(e) {
-        e.preventDefault();
-        setMessage(currentMessage);
-        sendMessage(currentMessage);
-        setCurrentMessage('');
-    }
+  function handleCurrentMessageChange (e) {
+    setCurrentMessage(e.target.value)
+  }
 
-    return (
+  function handleMessageSubmit (e) {
+    e.preventDefault()
+    setMessage(currentMessage)
+    sendMessage(currentMessage)
+    setCurrentMessage('')
+  }
+
+  return (
         <div>
             <h1>Message Form</h1>
-            <select value={roomId} onChange={(e) => {setRoomId(e.target.value)}}>
+            <select value={roomId} onChange={(e) => { setRoomId(e.target.value) }}>
                 <option value="0001">0001</option>
                 <option value="0002">0002</option>
             </select>
             <form onSubmit={handleMessageSubmit}>
-                <input 
-                    name='messageInput' 
-                    placeholder='Enter message..' 
-                    type='text' 
+                <input
+                    name='messageInput'
+                    placeholder='Enter message..'
+                    type='text'
                     value={currentMessage}
                     onChange={handleCurrentMessageChange}
                 />
@@ -63,7 +68,7 @@ function MessageForm() {
                 ))}
             </div>
         </div>
-    );
+  )
 }
 
-export default MessageForm;
+export default MessageForm
