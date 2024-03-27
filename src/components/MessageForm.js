@@ -3,29 +3,34 @@ import io from 'socket.io-client'
 
 const socket = io(process.env.REACT_APP_WEBSOCKET_URL)
 
-function MessageForm () {
-  const [receivedMessage, setReceivedMessage] = useState('')
-  const [roomId, setRoomId] = useState('0001')
+function MessageForm() {
+    const [messageHistory, setMessageHistory] = useState({});
+    const [roomId, setRoomId] = useState("0001");
 
-  useEffect(() => {
-    socket.on('receive_message', (msg) => {
-      setReceivedMessage(msg)
-    })
+    function sendMessage(msg) {
+        socket.emit('send_message', { room: roomId, message: msg });
+    }
+
+    const [message, setMessage] = useState('');
+    const [currentMessage, setCurrentMessage] = useState('');
+
+    useEffect(() => {
+        socket.on('receive_message_history', (msg_history) => {
+            setMessageHistory(msg_history);
+        });
 
     socket.emit('join_room', roomId)
 
-    return () => {
-      socket.off('receive_message')
-      socket.emit('leave_room', roomId)
+
+        return () => {
+            socket.off('receive_message_history');
+            socket.emit('leave_room', roomId);
+        };
+    }, [roomId]);
+
+    function handleCurrentMessageChange(e) {
+        setCurrentMessage(e.target.value);
     }
-  }, [roomId])
-
-  function sendMessage (msg) {
-    socket.emit('send_message', { room: roomId, message: msg })
-  }
-
-  const [message, setMessage] = useState('')
-  const [currentMessage, setCurrentMessage] = useState('')
 
   function handleCurrentMessageChange (e) {
     setCurrentMessage(e.target.value)
@@ -56,7 +61,12 @@ function MessageForm () {
                 <button type='submit'>Submit</button>
             </form>
             <p>Message: {message}</p>
-            <p>Received message: {receivedMessage}</p>
+            <div>
+                <h2>Message history:</h2>
+                {messageHistory[roomId]?.map((msg, index) => (
+                    <p key={index}>{msg}</p>
+                ))}
+            </div>
         </div>
   )
 }
