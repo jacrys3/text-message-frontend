@@ -1,0 +1,21 @@
+.messageForm {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex: 1;
+}
+
+.textInput {
+  flex: 9;
+  border: none;
+  padding: 10px;
+}
+
+.sendButton {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}

@@ -1,0 +1,18 @@
+.roomSidebar {
+  flex: 1;
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+}
+
+.addRoomButton {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.roomsContainer {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
