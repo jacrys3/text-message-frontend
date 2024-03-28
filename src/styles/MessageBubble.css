@@ -1,9 +1,22 @@
-.messageBubble {
-  background-color: #f1f0f0;
-  border-radius: 10px;
+.messageBubbleLeft {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 60%;
   padding: 10px;
   margin: 10px;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  align-self: flex-start;
+}
+
+.messageBubbleRight {
+  display: flex;
+  justify-content: flex-end;
   max-width: 60%;
-  width: auto;
-  word-wrap: break-word;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #0b93f6;
+  color: white;
+  border-radius: 20px;
+  align-self: flex-end;
 }

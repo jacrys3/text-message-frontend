@@ -13,9 +13,12 @@ function MessageContainer ({ roomId, socket, messageHistory, username }) {
         <h1>Room: {roomId}</h1>
       </div>
       <div className='messageHistory'>
-        {messageHistory[roomId]?.map((msg, index) => (
-          <MessageBubble key={msg.username} message={msg.message} />
-        ))}
+        {messageHistory[roomId]?.map((msg, index) => {
+          const alignLeft = msg.username !== username
+          return (
+            <MessageBubble key={msg.username} message={msg.message} alignLeft={alignLeft} />
+          )
+        })}
       </div>
       <TextInputContainer roomId={roomId} socket={socket} username={username} />
     </div>

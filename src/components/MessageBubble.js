@@ -3,16 +3,18 @@ import PropTypes from 'prop-types'
 
 import '../styles/MessageBubble.css'
 
-function MessageBubble ({ message }) {
+function MessageBubble ({ message, alignLeft }) {
+  const bubbleStyle = alignLeft ? 'messageBubbleLeft' : 'messageBubbleRight'
   return (
-    <div className='messageBubble'>
+    <div className={bubbleStyle}>
       <p>{message}</p>
     </div>
   )
 }
 
 MessageBubble.propTypes = {
-  message: PropTypes.string
+  message: PropTypes.string,
+  alignLeft: PropTypes.bool
 }
 
 export default MessageBubble
