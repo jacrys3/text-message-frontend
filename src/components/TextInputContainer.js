@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import '../styles/TextInputContainer.css'
 
-function TextInputContainer ({ roomId, socket }) {
+function TextInputContainer ({ roomId, socket, username }) {
   const [currentMessage, setCurrentMessage] = useState('')
 
   function handleMessageSubmit (e) {
@@ -14,7 +14,7 @@ function TextInputContainer ({ roomId, socket }) {
 
     e.preventDefault()
     if (currentMessage) {
-      socket.emit('send_message', { room: roomId, message: currentMessage })
+      socket.emit('send_message', { room: roomId, message: currentMessage, username })
       setCurrentMessage('')
     }
   }
@@ -41,7 +41,8 @@ function TextInputContainer ({ roomId, socket }) {
 
 TextInputContainer.propTypes = {
   roomId: PropTypes.string,
-  socket: PropTypes.object
+  socket: PropTypes.object,
+  username: PropTypes.string
 }
 
 export default TextInputContainer

@@ -6,7 +6,7 @@ import TextInputContainer from './TextInputContainer'
 
 import '../styles/MessageContainer.css'
 
-function MessageContainer ({ roomId, socket, messageHistory }) {
+function MessageContainer ({ roomId, socket, messageHistory, username }) {
   return (
     <div className='messageArea'>
       <div className='roomTitle'>
@@ -14,10 +14,10 @@ function MessageContainer ({ roomId, socket, messageHistory }) {
       </div>
       <div className='messageHistory'>
         {messageHistory[roomId]?.map((msg, index) => (
-          <MessageBubble key={msg} message={msg} />
+          <MessageBubble key={msg.username} message={msg.message} />
         ))}
       </div>
-      <TextInputContainer roomId={roomId} socket={socket} />
+      <TextInputContainer roomId={roomId} socket={socket} username={username} />
     </div>
   )
 }
@@ -25,7 +25,8 @@ function MessageContainer ({ roomId, socket, messageHistory }) {
 MessageContainer.propTypes = {
   roomId: PropTypes.string,
   socket: PropTypes.object,
-  messageHistory: PropTypes.object
+  messageHistory: PropTypes.object,
+  username: PropTypes.string
 }
 
 export default MessageContainer
