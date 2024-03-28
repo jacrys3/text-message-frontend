@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import io from 'socket.io-client'
+import RoomCard from './RoomCard'
+import MessageBubble from './MessageBubble'
 import '../styles/MessageForm.css'
 
 const socket = io(process.env.REACT_APP_WEBSOCKET_URL)
@@ -53,20 +55,20 @@ function MessageForm () {
   return (
     <div className='page'>
       <div className='roomSidebar'>
-        <button onClick={handleAddRoom}>Add Room</button>
-        <select value={roomId} onChange={(e) => { setRoomId(e.target.value) }}>
+        <button onClick={handleAddRoom} className='addRoomButton'>Add Room</button>
+        <div className='roomsContainer'>
           {rooms.map((room) => (
-            <option key={room} value={room}>{room}</option>
+            <RoomCard key={room} room={room} setRoomId={setRoomId} />
           ))}
-        </select>
+        </div>
       </div>
       <div className='messageArea'>
-        <div className='roomName'>
+        <div className='roomTitle'>
           <h1>Room: {roomId}</h1>
         </div>
         <div className='messageHistory'>
           {messageHistory[roomId]?.map((msg, index) => (
-            <p key={index}>{msg}</p>
+            <MessageBubble key={msg} message={msg} />
           ))}
         </div>
         <div>
