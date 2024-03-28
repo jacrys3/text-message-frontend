@@ -1,0 +1,16 @@
+.roomCard {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border: 2px solid #f0f0f0;
+  border-radius: 5px;
+}
+
+.roomCard:hover {
+  background-color: #f0f0f0;
+}
+
+.roomName {
+  flex: 1;
+  text-align: center;
+}
