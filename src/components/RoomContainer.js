@@ -6,19 +6,22 @@ import AddRoomCard from './AddRoomCard'
 
 import '../styles/RoomContainer.css'
 
-function RoomContainer ({ roomId, setRoomId }) {
+function RoomContainer ({ roomProp, setUsername }) {
+  const { roomId, setRoomId } = roomProp
+
   const [rooms, setRooms] = useState([])
   const [showAddRoom, setShowAddRoom] = useState(false)
 
   function addRoom (username, newRoom) {
     setShowAddRoom(false)
-    if (!newRoom) {
+    if (!newRoom || rooms.includes(newRoom)) {
       return
     }
     setRooms([...rooms, newRoom])
     if (!roomId) {
       setRoomId(newRoom)
     }
+    setUsername(username)
   }
 
   function handleAddRoom () {
@@ -39,8 +42,8 @@ function RoomContainer ({ roomId, setRoomId }) {
 }
 
 RoomContainer.propTypes = {
-  roomId: PropTypes.string,
-  setRoomId: PropTypes.func
+  roomProp: PropTypes.object,
+  setUsername: PropTypes.func
 }
 
 export default RoomContainer

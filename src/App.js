@@ -11,6 +11,7 @@ const socket = io(process.env.REACT_APP_WEBSOCKET_URL)
 function App () {
   const [roomId, setRoomId] = useState('')
   const [messageHistory, setMessageHistory] = useState({})
+  const [username, setUsername] = useState('')
 
   useEffect(() => {
     socket.on('receive_message_history', (msgHistory) => {
@@ -25,10 +26,12 @@ function App () {
     }
   }, [roomId])
 
+  const roomProp = { roomId, setRoomId }
+
   return (
     <div className='app'>
-      <RoomContainer roomId={roomId} setRoomId={setRoomId} />
-      <MessageContainer roomId={roomId} socket={socket} messageHistory={messageHistory} />
+      <RoomContainer roomProp={roomProp} setUsername={setUsername} />
+      <MessageContainer roomId={roomId} socket={socket} messageHistory={messageHistory} username={username} />
     </div>
   )
 }
