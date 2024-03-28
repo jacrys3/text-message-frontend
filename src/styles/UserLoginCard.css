@@ -1,0 +1,56 @@
+.userLoginCardBackground {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+}
+
+.userLoginCardContainer {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.userLoginCardHeader {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.userLoginCardTitle {
+  display: flex;
+  font-size: auto;
+  font-weight: bold;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.userLoginCardUsernameInput {
+  width: auto;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.userLoginCardButton {
+  width: auto;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}

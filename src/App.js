@@ -3,6 +3,7 @@ import io from 'socket.io-client'
 
 import RoomContainer from './components/RoomContainer'
 import MessageContainer from './components/MessageContainer'
+import UserLoginCard from './components/UserLoginCard'
 
 import './App.css'
 
@@ -12,6 +13,7 @@ function App () {
   const [roomId, setRoomId] = useState('')
   const [messageHistory, setMessageHistory] = useState({})
   const [username, setUsername] = useState('')
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
     socket.on('receive_message_history', (msgHistory) => {
@@ -30,8 +32,9 @@ function App () {
 
   return (
     <div className='app'>
-      <RoomContainer roomProp={roomProp} setUsername={setUsername} messageHistory={messageHistory} />
+      <RoomContainer roomProp={roomProp} messageHistory={messageHistory} />
       <MessageContainer roomId={roomId} socket={socket} messageHistory={messageHistory} username={username} />
+      {!isLoggedIn && <UserLoginCard setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} />}
     </div>
   )
 }
