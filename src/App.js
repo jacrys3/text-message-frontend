@@ -29,7 +29,7 @@ function App () {
   const roomProp = { roomId, setRoomId }
 
   return (
-    <div className='app'>
+    <div className='app' data-testid='app' >
       <RoomContainer roomProp={roomProp} setUsername={setUsername} messageHistory={messageHistory} />
       <MessageContainer roomId={roomId} socket={socket} messageHistory={messageHistory} username={username} />
     </div>

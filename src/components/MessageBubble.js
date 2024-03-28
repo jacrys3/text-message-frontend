@@ -6,7 +6,7 @@ import '../styles/MessageBubble.css'
 function MessageBubble ({ message, alignLeft }) {
   const bubbleStyle = alignLeft ? 'messageBubbleLeft' : 'messageBubbleRight'
   return (
-    <div className={bubbleStyle}>
+    <div className={bubbleStyle} data-testid='messageBubble'>
       <p>{message}</p>
     </div>
   )
