@@ -1,20 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import RoomCard from './RoomCard'
+import AddRoomCard from './AddRoomCard'
 
 import '../styles/RoomContainer.css'
 
 function RoomContainer ({ roomId, setRoomId }) {
-  const [rooms, setRooms] = React.useState([])
+  const [rooms, setRooms] = useState([])
+  const [showAddRoom, setShowAddRoom] = useState(false)
 
-  function handleAddRoom (e) {
-    e.preventDefault()
-    const newRoom = Math.floor(Math.random() * 10000).toString().padStart(4, '0')
+  function addRoom (username, newRoom) {
+    setShowAddRoom(false)
+    if (!newRoom) {
+      return
+    }
     setRooms([...rooms, newRoom])
     if (!roomId) {
       setRoomId(newRoom)
     }
+  }
+
+  function handleAddRoom () {
+    setShowAddRoom(true)
   }
 
   return (
@@ -25,6 +33,7 @@ function RoomContainer ({ roomId, setRoomId }) {
           <RoomCard key={room} room={room} setRoomId={setRoomId} />
         ))}
       </div>
+      {showAddRoom && <AddRoomCard addRoom={addRoom} /> }
     </div>
   )
 }

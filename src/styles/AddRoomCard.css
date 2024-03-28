@@ -1,0 +1,71 @@
+.addRoomCardBackground {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+}
+
+.addRoomCardContainer {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.addRoomCardHeader {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.addRoomCardTitle {
+  display: flex;
+  font-size: auto;
+  font-weight: bold;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.addRoomCardExit {
+  display: flex;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+}
+
+.addRoomCardUsername {
+  width: auto;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.addRoomCardRoomId {
+  width: auto;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.addRoomCardButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
