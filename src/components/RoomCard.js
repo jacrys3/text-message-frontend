@@ -3,13 +3,15 @@ import PropTypes from 'prop-types'
 
 import '../styles/RoomCard.css'
 
-function RoomCard ({ room, setRoomId, username, time, messageHistory }) {
+function RoomCard ({ room, setRoomId, username, messageHistory }) {
   const [recentMessage, setRecentMessage] = useState('')
+  const [time, setTime] = useState('')
 
   useEffect(() => {
     if (messageHistory) {
       const recentMessage = messageHistory[messageHistory.length - 1]
       setRecentMessage(recentMessage.message)
+      setTime(recentMessage.time)
     }
   }, [messageHistory])
 

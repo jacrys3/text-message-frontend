@@ -33,7 +33,7 @@ function RoomContainer ({ roomProp, setUsername, messageHistory }) {
       <button onClick={handleAddRoom} className='addRoomButton'>Add Room</button>
       <div className='roomsContainer'>
         {rooms.map((room) => (
-          <RoomCard key={room} room={room} setRoomId={setRoomId} username='username' time='00:00' messageHistory={messageHistory[room]} />
+          <RoomCard key={room} room={room} setRoomId={setRoomId} username='username' messageHistory={messageHistory[room]} />
         ))}
       </div>
       {showAddRoom && <AddRoomCard addRoom={addRoom} /> }

@@ -14,7 +14,8 @@ function TextInputContainer ({ roomId, socket, username }) {
 
     e.preventDefault()
     if (currentMessage) {
-      socket.emit('send_message', { room: roomId, message: currentMessage, username })
+      const time = new Date().toLocaleTimeString().slice(0, 5) + new Date().toLocaleTimeString().slice(8, 11)
+      socket.emit('send_message', { room: roomId, message: currentMessage, username, time })
       setCurrentMessage('')
     }
   }
