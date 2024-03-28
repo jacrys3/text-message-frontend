@@ -51,7 +51,7 @@ function MessageForm () {
   }, [roomId])
 
   return (
-    <div>
+    <div className='page'>
       <div className='roomSidebar'>
         <button onClick={handleAddRoom}>Add Room</button>
         <select value={roomId} onChange={(e) => { setRoomId(e.target.value) }}>
@@ -60,16 +60,16 @@ function MessageForm () {
           ))}
         </select>
       </div>
-      <div className='roomName'>
-        <h1>Room: {roomId}</h1>
-      </div>
       <div className='messageArea'>
+        <div className='roomName'>
+          <h1>Room: {roomId}</h1>
+        </div>
         <div className='messageHistory'>
           {messageHistory[roomId]?.map((msg, index) => (
             <p key={index}>{msg}</p>
           ))}
         </div>
-        <div className='textInputArea'>
+        <div>
           <form onSubmit={handleMessageSubmit} className='messageForm'>
             <input
               name='messageInput'
