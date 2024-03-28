@@ -30,7 +30,7 @@ function App () {
 
   return (
     <div className='app'>
-      <RoomContainer roomProp={roomProp} setUsername={setUsername} />
+      <RoomContainer roomProp={roomProp} setUsername={setUsername} messageHistory={messageHistory} />
       <MessageContainer roomId={roomId} socket={socket} messageHistory={messageHistory} username={username} />
     </div>
   )
