@@ -6,20 +6,20 @@ import AddRoomCard from './AddRoomCard'
 
 import '../styles/RoomContainer.css'
 
-function RoomContainer ({ roomProp, setUsername }) {
+function RoomContainer ({ roomProp, setUsername, messageHistory }) {
   const { roomId, setRoomId } = roomProp
 
   const [rooms, setRooms] = useState([])
   const [showAddRoom, setShowAddRoom] = useState(false)
 
-  function addRoom (username, newRoom) {
+  function addRoom (username, otherUsername) {
     setShowAddRoom(false)
-    if (!newRoom || rooms.includes(newRoom)) {
+    if (!otherUsername || rooms.includes(otherUsername)) {
       return
     }
-    setRooms([...rooms, newRoom])
+    setRooms([...rooms, otherUsername])
     if (!roomId) {
-      setRoomId(newRoom)
+      setRoomId(otherUsername)
     }
     setUsername(username)
   }
@@ -33,7 +33,7 @@ function RoomContainer ({ roomProp, setUsername }) {
       <button onClick={handleAddRoom} className='addRoomButton'>Add Room</button>
       <div className='roomsContainer'>
         {rooms.map((room) => (
-          <RoomCard key={room} room={room} setRoomId={setRoomId} />
+          <RoomCard key={room} room={room} setRoomId={setRoomId} username='username' time='00:00' messageHistory={messageHistory[room]} />
         ))}
       </div>
       {showAddRoom && <AddRoomCard addRoom={addRoom} /> }
@@ -43,7 +43,8 @@ function RoomContainer ({ roomProp, setUsername }) {
 
 RoomContainer.propTypes = {
   roomProp: PropTypes.object,
-  setUsername: PropTypes.func
+  setUsername: PropTypes.func,
+  messageHistory: PropTypes.object
 }
 
 export default RoomContainer
